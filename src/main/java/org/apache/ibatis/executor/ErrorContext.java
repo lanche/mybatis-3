@@ -21,6 +21,7 @@ package org.apache.ibatis.executor;
 public class ErrorContext {
 
   private static final String LINE_SEPARATOR = System.getProperty("line.separator","\n");
+  // ThreadLocal类型对象，保存每个线程的异常信息
   private static final ThreadLocal<ErrorContext> LOCAL = new ThreadLocal<ErrorContext>();
 
   private ErrorContext stored;

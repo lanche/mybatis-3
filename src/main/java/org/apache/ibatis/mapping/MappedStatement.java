@@ -30,6 +30,7 @@ import org.apache.ibatis.session.Configuration;
 
 /**
  * @author Clinton Begin
+ * Map接口对象，对应着一个Map接口
  */
 public final class MappedStatement {
 
