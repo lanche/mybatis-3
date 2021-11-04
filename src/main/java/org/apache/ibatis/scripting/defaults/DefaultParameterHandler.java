@@ -35,6 +35,7 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
 /**
  * @author Clinton Begin
  * @author Eduardo Macarron
+ * 动态sql占位符替换为具体的参数值
  */
 public class DefaultParameterHandler implements ParameterHandler {
 

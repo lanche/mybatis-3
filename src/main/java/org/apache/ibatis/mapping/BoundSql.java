@@ -33,10 +33,13 @@ import org.apache.ibatis.session.Configuration;
  *
  * @author Clinton Begin
  * 动态SQL的信息
+ * SQL语句和参数的封装
  */
 public class BoundSql {
 
+  // mapper配置解析的SQL语句
   private final String sql;
+  // 参数映射信息
   private final List<ParameterMapping> parameterMappings;
   private final Object parameterObject;
   private final Map<String, Object> additionalParameters;

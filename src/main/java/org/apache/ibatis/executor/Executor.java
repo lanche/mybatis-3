@@ -48,6 +48,7 @@ public interface Executor {
 
   void rollback(boolean required) throws SQLException;
 
+  // 缓存key的生成策略
   CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowBounds rowBounds, BoundSql boundSql);
 
   boolean isCached(MappedStatement ms, CacheKey key);

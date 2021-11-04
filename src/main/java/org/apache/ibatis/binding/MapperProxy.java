@@ -30,6 +30,7 @@ import org.apache.ibatis.session.SqlSession;
 /**
  * @author Clinton Begin
  * @author Eduardo Macarron
+ * Mapper接口的代理对象，实现动态代理
  */
 public class MapperProxy<T> implements InvocationHandler, Serializable {
 
@@ -47,6 +48,7 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
     try {
+      // Object类不代理
       if (Object.class.equals(method.getDeclaringClass())) {
         return method.invoke(this, args);
       } else if (isDefaultMethod(method)) {
@@ -55,6 +57,7 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
     } catch (Throwable t) {
       throw ExceptionUtil.unwrapThrowable(t);
     }
+    // 对Mapper接口汇总定义的方法进行封装
     final MapperMethod mapperMethod = cachedMapperMethod(method);
     return mapperMethod.execute(sqlSession, args);
   }
@@ -63,6 +66,7 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
     MapperMethod mapperMethod = methodCache.get(method);
     if (mapperMethod == null) {
       mapperMethod = new MapperMethod(mapperInterface, method, sqlSession.getConfiguration());
+      // 按照方法进行缓存（享元思想）
       methodCache.put(method, mapperMethod);
     }
     return mapperMethod;

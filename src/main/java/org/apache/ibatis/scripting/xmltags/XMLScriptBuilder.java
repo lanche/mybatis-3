@@ -84,6 +84,7 @@ public class XMLScriptBuilder extends BaseBuilder {
         TextSqlNode textSqlNode = new TextSqlNode(data);
         if (textSqlNode.isDynamic()) {
           contents.add(textSqlNode);
+          // 动态SQL
           isDynamic = true;
         } else {
           contents.add(new StaticTextSqlNode(data));

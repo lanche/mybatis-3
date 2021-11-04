@@ -139,6 +139,7 @@ public class Configuration {
    */
   protected Class<?> configurationFactory;
 
+  // Mapper接口注册
   protected final MapperRegistry mapperRegistry = new MapperRegistry(this);
   protected final InterceptorChain interceptorChain = new InterceptorChain();
   protected final TypeHandlerRegistry typeHandlerRegistry = new TypeHandlerRegistry();
@@ -543,6 +544,7 @@ public class Configuration {
 
   public ParameterHandler newParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql) {
     ParameterHandler parameterHandler = mappedStatement.getLang().createParameterHandler(mappedStatement, parameterObject, boundSql);
+    // 添加拦截器，只支持ParameterHandler、ResultSetHandler、StatementHandler、Executor四种类型
     parameterHandler = (ParameterHandler) interceptorChain.pluginAll(parameterHandler);
     return parameterHandler;
   }
@@ -578,6 +580,7 @@ public class Configuration {
     if (cacheEnabled) {
       executor = new CachingExecutor(executor);
     }
+    // 拿到的实际是代理对象
     executor = (Executor) interceptorChain.pluginAll(executor);
     return executor;
   }

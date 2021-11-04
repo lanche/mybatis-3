@@ -19,6 +19,7 @@ import java.util.Properties;
 
 /**
  * @author Clinton Begin
+ * 拦截器接口定义，自定义拦截器需要实现这三个方法
  */
 public interface Interceptor {
 

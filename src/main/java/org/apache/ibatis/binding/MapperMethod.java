@@ -39,6 +39,7 @@ import java.util.*;
  * @author Clinton Begin
  * @author Eduardo Macarron
  * @author Lasse Voss
+ * Mapper接口中的方法的封装类
  */
 public class MapperMethod {
 

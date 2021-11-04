@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
 
 /**
  * @author Clinton Begin
+ * 拦截器代理对象
  */
 public class Invocation {
 

@@ -26,6 +26,7 @@ public class InterceptorChain {
 
   private final List<Interceptor> interceptors = new ArrayList<Interceptor>();
 
+  // 返回代理对象
   public Object pluginAll(Object target) {
     for (Interceptor interceptor : interceptors) {
       target = interceptor.plugin(target);
@@ -33,6 +34,7 @@ public class InterceptorChain {
     return target;
   }
 
+  // 添加拦截器
   public void addInterceptor(Interceptor interceptor) {
     interceptors.add(interceptor);
   }
