@@ -32,6 +32,7 @@ import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
  */
 public class SqlSessionFactoryBuilder {
 
+  // 字符输入流和字节输入流两种初始化方式
   public SqlSessionFactory build(Reader reader) {
     return build(reader, null, null);
   }
@@ -44,6 +45,7 @@ public class SqlSessionFactoryBuilder {
     return build(reader, null, properties);
   }
 
+  // 将xml配置文件的字符输入流转化为XMLConfigBuilder对象后再调用parse转化为Configuration对象
   public SqlSessionFactory build(Reader reader, String environment, Properties properties) {
     try {
       XMLConfigBuilder parser = new XMLConfigBuilder(reader, environment, properties);
@@ -87,7 +89,7 @@ public class SqlSessionFactoryBuilder {
       }
     }
   }
-    // 创建SQlSessionFactory对象
+    // 创建SQlSessionFactory对象、读取配置文件最终转化为configuration对象
   public SqlSessionFactory build(Configuration config) {
     return new DefaultSqlSessionFactory(config);
   }

@@ -375,6 +375,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     return !context.isStopped() && context.getResultCount() < rowBounds.getLimit();
   }
 
+  // 分页
   private void skipRows(ResultSet rs, RowBounds rowBounds) throws SQLException {
     if (rs.getType() != ResultSet.TYPE_FORWARD_ONLY) {
       if (rowBounds.getOffset() != RowBounds.NO_ROW_OFFSET) {

@@ -29,6 +29,7 @@ import java.util.Properties;
 
 public abstract class BaseDataTest {
 
+  // 两种类型是内存数据库derby、hsqldb
   public static final String BLOG_PROPERTIES = "org/apache/ibatis/databases/blog/blog-derby.properties";
   public static final String BLOG_DDL = "org/apache/ibatis/databases/blog/blog-derby-schema.sql";
   public static final String BLOG_DATA = "org/apache/ibatis/databases/blog/blog-derby-dataload.sql";
@@ -57,6 +58,7 @@ public abstract class BaseDataTest {
     return ds;
   }
 
+  // 通过ScriptRunner执行SQL脚本
   public static void runScript(DataSource ds, String resource) throws IOException, SQLException {
     Connection connection = ds.getConnection();
     try {

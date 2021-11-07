@@ -874,6 +874,7 @@ public class Configuration {
       if (containsKey(key)) {
         throw new IllegalArgumentException(name + " already contains value for " + key);
       }
+      // 添加缓存的时候会将类名的全路径名和类名两个key都指向同一个缓存对象
       if (key.contains(".")) {
         final String shortKey = getShortName(key);
         if (super.get(shortKey) == null) {

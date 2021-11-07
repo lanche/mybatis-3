@@ -55,6 +55,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class SqlSessionTest extends BaseDataTest {
+  // sqlMapper实际上是factory
   private static SqlSessionFactory sqlMapper;
 
   @BeforeClass

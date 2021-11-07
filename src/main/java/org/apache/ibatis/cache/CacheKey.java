@@ -56,6 +56,7 @@ public class CacheKey implements Cloneable, Serializable {
     return updateList.size();
   }
 
+  // 缓存key的计算，怎么解决hash冲突的问题
   public void update(Object object) {
     int baseHashCode = object == null ? 1 : ArrayUtil.hashCode(object); 
 
