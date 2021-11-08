@@ -37,6 +37,7 @@ import org.apache.ibatis.io.Resources;
  */
 public class TypeAliasRegistry {
 
+  // 类型别名映射
   private final Map<String, Class<?>> TYPE_ALIASES = new HashMap<String, Class<?>>();
 
   public TypeAliasRegistry() {
@@ -110,6 +111,7 @@ public class TypeAliasRegistry {
       // issue #748
       String key = string.toLowerCase(Locale.ENGLISH);
       Class<T> value;
+      // 如果不存在则通过自定义类加载器加载类
       if (TYPE_ALIASES.containsKey(key)) {
         value = (Class<T>) TYPE_ALIASES.get(key);
       } else {
@@ -125,6 +127,7 @@ public class TypeAliasRegistry {
     registerAliases(packageName, Object.class);
   }
 
+  // 通过配置扫描包名+Alias注解实现别名注册
   public void registerAliases(String packageName, Class<?> superType){
     ResolverUtil<Class<?>> resolverUtil = new ResolverUtil<Class<?>>();
     resolverUtil.find(new ResolverUtil.IsA(superType), packageName);

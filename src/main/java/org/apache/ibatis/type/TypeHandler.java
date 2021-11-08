@@ -25,12 +25,14 @@ import java.sql.SQLException;
  */
 public interface TypeHandler<T> {
 
+  // 通过TypeHandler进行类型转换
   void setParameter(PreparedStatement ps, int i, T parameter, JdbcType jdbcType) throws SQLException;
 
   T getResult(ResultSet rs, String columnName) throws SQLException;
 
   T getResult(ResultSet rs, int columnIndex) throws SQLException;
 
+  // 存储过程
   T getResult(CallableStatement cs, int columnIndex) throws SQLException;
 
 }

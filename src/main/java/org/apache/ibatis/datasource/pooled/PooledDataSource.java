@@ -38,7 +38,9 @@ import org.apache.ibatis.logging.LogFactory;
  * @author Clinton Begin
  */
 public class PooledDataSource implements DataSource {
-
+  /**
+   * 池化数据源
+   */
   private static final Log log = LogFactory.getLog(PooledDataSource.class);
 
   private final PoolState state = new PoolState(this);

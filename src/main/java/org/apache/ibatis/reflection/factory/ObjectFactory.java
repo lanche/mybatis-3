@@ -25,6 +25,7 @@ import java.util.Properties;
  */
 public interface ObjectFactory {
 
+  // 创建返回对象的工厂
   /**
    * Sets configuration properties.
    * @param properties configuration properties

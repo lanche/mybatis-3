@@ -152,8 +152,13 @@ public class SqlSessionTest extends BaseDataTest {
   public void shouldSelectAllAuthors() throws Exception {
     SqlSession session = sqlMapper.openSession(TransactionIsolationLevel.SERIALIZABLE);
     try {
+      // 命名空间+id的方式，ibatis方式
       List<Author> authors = session.selectList("org.apache.ibatis.domain.blog.mappers.AuthorMapper.selectAllAuthors");
+      // 也可以用这种方式，通过Mapper接口屏蔽session
+      AuthorMapper mapper = session.getMapper(AuthorMapper.class);
+      List<Author> authors2 = mapper.selectAllAuthors();
       assertEquals(2, authors.size());
+      assertEquals(2, authors2.size());
     } finally {
       session.close();
     }

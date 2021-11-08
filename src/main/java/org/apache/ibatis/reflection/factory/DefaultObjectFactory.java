@@ -37,6 +37,7 @@ public class DefaultObjectFactory implements ObjectFactory, Serializable {
 
   private static final long serialVersionUID = -8855120656740914948L;
 
+  // 创建返回结果的对象
   @Override
   public <T> T create(Class<T> type) {
     return create(type, null, null);
@@ -55,6 +56,7 @@ public class DefaultObjectFactory implements ObjectFactory, Serializable {
     // no props for default
   }
 
+  // 初始化对象实例
   private  <T> T instantiateClass(Class<T> type, List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
     try {
       Constructor<T> constructor;
@@ -91,6 +93,7 @@ public class DefaultObjectFactory implements ObjectFactory, Serializable {
     }
   }
 
+  // 根据传入类的接口类型提供一些默认的实现（集合类）
   protected Class<?> resolveInterface(Class<?> type) {
     Class<?> classToCreate;
     if (type == List.class || type == Collection.class || type == Iterable.class) {
