@@ -37,6 +37,7 @@ public class DefaultReflectorFactory implements ReflectorFactory {
 
   @Override
   public Reflector findForClass(Class<?> type) {
+    // 把原始的class对象转化为了Reflector对象
     if (classCacheEnabled) {
             // synchronized (type) removed see issue #461
       Reflector cached = reflectorMap.get(type);

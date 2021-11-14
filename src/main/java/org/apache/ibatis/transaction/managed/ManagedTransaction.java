@@ -36,6 +36,7 @@ import org.apache.ibatis.transaction.Transaction;
  */
 public class ManagedTransaction implements Transaction {
 
+  // 事务管理器
   private static final Log log = LogFactory.getLog(ManagedTransaction.class);
 
   private DataSource dataSource;

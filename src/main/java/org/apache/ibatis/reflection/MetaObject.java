@@ -109,6 +109,7 @@ public class MetaObject {
     return objectWrapper.hasGetter(name);
   }
 
+  // 根据属性名获取属性值
   public Object getValue(String name) {
     PropertyTokenizer prop = new PropertyTokenizer(name);
     if (prop.hasNext()) {

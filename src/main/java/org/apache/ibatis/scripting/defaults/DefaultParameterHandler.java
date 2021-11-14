@@ -46,6 +46,12 @@ public class DefaultParameterHandler implements ParameterHandler {
   private final BoundSql boundSql;
   private final Configuration configuration;
 
+  /**
+   *
+   * @param mappedStatement
+   * @param parameterObject 参数对象
+   * @param boundSql 动态SQL的信息
+   */
   public DefaultParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql) {
     this.mappedStatement = mappedStatement;
     this.configuration = mappedStatement.getConfiguration();
@@ -59,6 +65,7 @@ public class DefaultParameterHandler implements ParameterHandler {
     return parameterObject;
   }
 
+  // 将参数转化为SQL中对应字段的值
   @Override
   public void setParameters(PreparedStatement ps) {
     ErrorContext.instance().activity("setting parameters").object(mappedStatement.getParameterMap().getId());
