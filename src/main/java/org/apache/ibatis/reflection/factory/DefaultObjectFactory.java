@@ -57,9 +57,19 @@ public class DefaultObjectFactory implements ObjectFactory, Serializable {
   }
 
   // 初始化对象实例
+
+  /**
+   * 创建类的实例
+   * @param type
+   * @param constructorArgTypes 构造方法输入的参数类型
+   * @param constructorArgs 构造方法输入的参数
+   * @param <T> 实例类型
+   * @return
+   */
   private  <T> T instantiateClass(Class<T> type, List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
     try {
       Constructor<T> constructor;
+      // 无参构造函数
       if (constructorArgTypes == null || constructorArgs == null) {
         constructor = type.getDeclaredConstructor();
         if (!constructor.isAccessible()) {
@@ -67,6 +77,7 @@ public class DefaultObjectFactory implements ObjectFactory, Serializable {
         }
         return constructor.newInstance();
       }
+      // 有参构造函数
       constructor = type.getDeclaredConstructor(constructorArgTypes.toArray(new Class[constructorArgTypes.size()]));
       if (!constructor.isAccessible()) {
         constructor.setAccessible(true);
