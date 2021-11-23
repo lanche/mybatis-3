@@ -28,7 +28,7 @@ public final class PropertyNamer {
     // Prevent Instantiation of Static Class
   }
 
-  /**
+  /** 通过方法获取属性名
    * java 对象属性方法必需已“get”、“set”、“is”开头
    * @param name
    * @return

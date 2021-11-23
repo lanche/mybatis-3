@@ -46,6 +46,7 @@ import org.apache.ibatis.reflection.property.PropertyNamer;
  */
 public class Reflector {
 
+  // 反射核心类，保存每个类所有的get、set方法、以及返回的类型、属性名
   private final Class<?> type;
   private final String[] readablePropertyNames;
   private final String[] writeablePropertyNames;
@@ -95,6 +96,7 @@ public class Reflector {
     Map<String, List<Method>> conflictingGetters = new HashMap<String, List<Method>>();
     Method[] methods = getClassMethods(cls);
     for (Method method : methods) {
+      // 方法有参数说明不是get或者is方法
       if (method.getParameterTypes().length > 0) {
         continue;
       }
@@ -331,6 +333,11 @@ public class Reflector {
     return methods.toArray(new Method[methods.size()]);
   }
 
+  /**
+   * 添加方法签名和方法的映射
+   * @param uniqueMethods
+   * @param methods
+   */
   private void addUniqueMethods(Map<String, Method> uniqueMethods, Method[] methods) {
     for (Method currentMethod : methods) {
       if (!currentMethod.isBridge()) {
@@ -372,6 +379,7 @@ public class Reflector {
     return sb.toString();
   }
 
+  // 判断是否有权限访问私有方法
   private static boolean canAccessPrivateMethods() {
     try {
       SecurityManager securityManager = System.getSecurityManager();

@@ -31,6 +31,7 @@ import org.apache.ibatis.session.RowBounds;
 
 public class ParamNameResolver {
 
+  // 解析方法的参数，判断是否含有“Param”注解
   private static final String GENERIC_NAME_PREFIX = "param";
 
   /**

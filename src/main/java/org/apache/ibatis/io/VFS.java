@@ -41,6 +41,9 @@ public abstract class VFS {
   /** The list to which implementations are added by {@link #addImplClass(Class)}. */
   public static final List<Class<? extends VFS>> USER_IMPLEMENTATIONS = new ArrayList<Class<? extends VFS>>();
 
+  /**
+   * 单例模式
+   */
   /** Singleton instance holder. */
   private static class VFSHolder {
     static final VFS INSTANCE = createVFS();
@@ -49,6 +52,7 @@ public abstract class VFS {
     static VFS createVFS() {
       // Try the user implementations first, then the built-ins
       List<Class<? extends VFS>> impls = new ArrayList<Class<? extends VFS>>();
+      // 保证了自定义的实现具有更高的优先级
       impls.addAll(USER_IMPLEMENTATIONS);
       impls.addAll(Arrays.asList((Class<? extends VFS>[]) IMPLEMENTATIONS));
 
@@ -64,10 +68,7 @@ public abstract class VFS {
                   " is not valid in this environment.");
             }
           }
-        } catch (InstantiationException e) {
-          log.error("Failed to instantiate " + impl, e);
-          return null;
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
           log.error("Failed to instantiate " + impl, e);
           return null;
         }

@@ -26,6 +26,7 @@ import java.util.Set;
  */
 public class SimpleTypeRegistry {
 
+  // 基本类型注册
   private static final Set<Class<?>> SIMPLE_TYPE_SET = new HashSet<Class<?>>();
 
   static {

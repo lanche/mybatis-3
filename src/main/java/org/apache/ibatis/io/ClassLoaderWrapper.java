@@ -177,6 +177,7 @@ public class ClassLoaderWrapper {
    */
   Class<?> classForName(String name, ClassLoader[] classLoader) throws ClassNotFoundException {
 
+    // 自定义类加载
     for (ClassLoader cl : classLoader) {
 
       if (null != cl) {
@@ -201,6 +202,7 @@ public class ClassLoaderWrapper {
 
   }
 
+  // 获取所有的类加载器
   ClassLoader[] getClassLoaders(ClassLoader classLoader) {
     return new ClassLoader[]{
         classLoader,
