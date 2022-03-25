@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2017 the original author or authors.
+ *    Copyright 2009-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -346,6 +346,7 @@ public class PooledDataSource implements DataSource {
     return ("" + url + username + password).hashCode();
   }
 
+  // 连接回收
   protected void pushConnection(PooledConnection conn) throws SQLException {
 
     synchronized (state) {
@@ -385,6 +386,7 @@ public class PooledDataSource implements DataSource {
     }
   }
 
+  // 从连接池中获取连接
   private PooledConnection popConnection(String username, String password) throws SQLException {
     boolean countedWait = false;
     PooledConnection conn = null;
