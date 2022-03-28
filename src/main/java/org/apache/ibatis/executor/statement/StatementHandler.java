@@ -27,6 +27,7 @@ import org.apache.ibatis.session.ResultHandler;
 
 /**
  * @author Clinton Begin
+ * 处理Statement相关的操作
  */
 public interface StatementHandler {
 

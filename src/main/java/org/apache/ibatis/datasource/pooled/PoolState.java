@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * @author Clinton Begin
- * 连接池状态管理
+ * 连接池状态管理，多少个可用连接、多少个活跃连接
  */
 public class PoolState {
 

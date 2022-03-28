@@ -35,6 +35,7 @@ import org.apache.ibatis.session.Configuration;
 public final class MappedStatement {
 
   private String resource;
+  // 每个Map接口都持有一个configuration对象
   private Configuration configuration;
   private String id;
   private Integer fetchSize;

@@ -267,6 +267,7 @@ public abstract class BaseExecutor implements Executor {
   @Override
   public void clearLocalCache() {
     if (!closed) {
+      // 有更新操作时整个executor的一级缓存都会清除
       localCache.clear();
       localOutputParameterCache.clear();
     }
