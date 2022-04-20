@@ -151,6 +151,7 @@ public abstract class BaseExecutor implements Executor {
     }
     List<E> list;
     try {
+      //todo what is the effect of queryStack?
       queryStack++;
       // 从一级缓存中获取
       list = resultHandler == null ? (List<E>) localCache.getObject(key) : null;
@@ -162,12 +163,14 @@ public abstract class BaseExecutor implements Executor {
     } finally {
       queryStack--;
     }
+    // todo why need to defer load while queryStack is not 0
     if (queryStack == 0) {
       for (DeferredLoad deferredLoad : deferredLoads) {
         deferredLoad.load();
       }
       // issue #601
       deferredLoads.clear();
+      // todo here we know the localCache only available in current statement when scope is STATEMENT
       if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
         // issue #482
         clearLocalCache();
@@ -277,6 +280,7 @@ public abstract class BaseExecutor implements Executor {
   protected abstract List<BatchResult> doFlushStatements(boolean isRollback)
       throws SQLException;
 
+  // the specific implementation will be completed by subClass
   protected abstract <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql)
       throws SQLException;
 
@@ -323,6 +327,7 @@ public abstract class BaseExecutor implements Executor {
 
   private <E> List<E> queryFromDatabase(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql) throws SQLException {
     List<E> list;
+    // why using a placeholder to make localCache not null
     localCache.putObject(key, EXECUTION_PLACEHOLDER);
     try {
       list = doQuery(ms, parameter, rowBounds, resultHandler, boundSql);

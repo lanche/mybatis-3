@@ -272,7 +272,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <testCompilerArgument>${maven.compiler.testCompilerArgument}</testCompilerArgument>
+          <testCompilerArgument>${maven.compiler.testCompilerArgument}</testCompilerArgument><source>8</source><target>8</target>
         </configuration>
       </plugin>
       <plugin>
