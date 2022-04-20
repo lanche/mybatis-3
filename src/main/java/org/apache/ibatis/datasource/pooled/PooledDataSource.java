@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2017 the original author or authors.
+ *    Copyright 2009-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -346,8 +346,10 @@ public class PooledDataSource implements DataSource {
     return ("" + url + username + password).hashCode();
   }
 
+  // 连接回收，连接复用的秘密
   protected void pushConnection(PooledConnection conn) throws SQLException {
 
+    // 回收连接的过程是全局加锁（一个DataSource内）
     synchronized (state) {
       state.activeConnections.remove(conn);
       if (conn.isValid()) {
@@ -356,6 +358,7 @@ public class PooledDataSource implements DataSource {
           if (!conn.getRealConnection().getAutoCommit()) {
             conn.getRealConnection().rollback();
           }
+          // 又创建一个新的连接，将原来的置为无效
           PooledConnection newConn = new PooledConnection(conn.getRealConnection(), this);
           state.idleConnections.add(newConn);
           newConn.setCreatedTimestamp(conn.getCreatedTimestamp());
@@ -370,6 +373,7 @@ public class PooledDataSource implements DataSource {
           if (!conn.getRealConnection().getAutoCommit()) {
             conn.getRealConnection().rollback();
           }
+          // 真正关闭连接
           conn.getRealConnection().close();
           if (log.isDebugEnabled()) {
             log.debug("Closed connection " + conn.getRealHashCode() + ".");
@@ -385,6 +389,7 @@ public class PooledDataSource implements DataSource {
     }
   }
 
+  // 从连接池中获取连接
   private PooledConnection popConnection(String username, String password) throws SQLException {
     boolean countedWait = false;
     PooledConnection conn = null;
@@ -526,6 +531,7 @@ public class PooledDataSource implements DataSource {
             }
             Connection realConn = conn.getRealConnection();
             Statement statement = realConn.createStatement();
+            // 测试连接
             ResultSet rs = statement.executeQuery(poolPingQuery);
             rs.close();
             statement.close();

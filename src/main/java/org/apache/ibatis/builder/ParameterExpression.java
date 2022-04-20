@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2016 the original author or authors.
+ *    Copyright 2009-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ import java.util.HashMap;
  */
 public class ParameterExpression extends HashMap<String, String> {
 
+  // 用来将描述属性的字符串解析为键值对的形式
   private static final long serialVersionUID = -2417552199605158680L;
 
   public ParameterExpression(String expression) {

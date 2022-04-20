@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2017 the original author or authors.
+ *    Copyright 2009-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import org.apache.ibatis.session.Configuration;
  */
 public class BoundSql {
 
-  // mapper配置解析的SQL语句
+  // mapper配置解析的SQL语句，可能含有“？”占位符
   private final String sql;
   // 参数映射信息
   private final List<ParameterMapping> parameterMappings;

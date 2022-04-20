@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2017 the original author or authors.
+ *    Copyright 2009-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -35,11 +35,13 @@ import org.apache.ibatis.session.Configuration;
 
 /**
  * @author Clinton Begin
+ * resultMap节点对应的解析实体类
  */
 public class ResultMap {
   private Configuration configuration;
 
   private String id;
+  // 对应的Java类
   private Class<?> type;
   private List<ResultMapping> resultMappings;
   private List<ResultMapping> idResultMappings;

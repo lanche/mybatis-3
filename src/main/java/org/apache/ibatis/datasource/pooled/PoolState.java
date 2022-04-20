@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2015 the original author or authors.
+ *    Copyright 2009-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * @author Clinton Begin
+ * 连接池状态管理，多少个可用连接、多少个活跃连接
  */
 public class PoolState {
 

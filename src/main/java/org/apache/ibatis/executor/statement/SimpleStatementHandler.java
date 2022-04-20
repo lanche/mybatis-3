@@ -40,6 +40,7 @@ public class SimpleStatementHandler extends BaseStatementHandler {
     super(executor, mappedStatement, parameter, rowBounds, resultHandler, boundSql);
   }
 
+  // 最终调用JDBC中的Statement实现完成SQL执行
   @Override
   public int update(Statement statement) throws SQLException {
     String sql = boundSql.getSql();

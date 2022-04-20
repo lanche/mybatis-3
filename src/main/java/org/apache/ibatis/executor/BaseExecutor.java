@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2018 the original author or authors.
+ *    Copyright 2009-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -198,6 +198,7 @@ public abstract class BaseExecutor implements Executor {
     }
   }
 
+  // 生成缓存键
   @Override
   public CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowBounds rowBounds, BoundSql boundSql) {
     if (closed) {
@@ -269,6 +270,7 @@ public abstract class BaseExecutor implements Executor {
   @Override
   public void clearLocalCache() {
     if (!closed) {
+      // 有更新操作时整个executor的一级缓存都会清除
       localCache.clear();
       localOutputParameterCache.clear();
     }
@@ -344,6 +346,7 @@ public abstract class BaseExecutor implements Executor {
   protected Connection getConnection(Log statementLog) throws SQLException {
     Connection connection = transaction.getConnection();
     if (statementLog.isDebugEnabled()) {
+      // 拿到一个代理对象
       return ConnectionLogger.newInstance(connection, statementLog, queryStack);
     } else {
       return connection;
